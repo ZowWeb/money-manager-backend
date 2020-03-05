@@ -15,6 +15,9 @@ const transactions = require("./routes/transactions");
 // Start app
 const app = express();
 
+// Bodyparser Middleware to send data
+app.use(express.json());
+
 // Mount the router
 app.use("/api/v1/transactions", transactions);
 

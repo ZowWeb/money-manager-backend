@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const morgan = require("morgan");
+const cors = require("cors");
 const connectDB = require("./config/db");
 
 dotenv.config({ path: "./config/config.env" });
@@ -15,8 +16,16 @@ const transactions = require("./routes/transactions");
 // Start app
 const app = express();
 
+// CORS Middleware - To allow requests from any origin 
+app.use(cors());
+
 // Bodyparser Middleware to send data
 app.use(express.json());
+
+// Morgan Middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 
 // Mount the router
 app.use("/api/v1/transactions", transactions);

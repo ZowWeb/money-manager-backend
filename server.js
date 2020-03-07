@@ -16,8 +16,19 @@ const transactions = require("./routes/transactions");
 // Start app
 const app = express();
 
-// CORS Middleware - To allow requests from any origin 
-app.use(cors());
+// CORS Middleware - To allow requests from any origin
+// Set up a whitelist and check against it:
+const whitelist = ["https://money-manager-app.now.sh"];
+var corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+};
+app.use(cors(corsOptions));
 
 // Bodyparser Middleware to send data
 app.use(express.json());

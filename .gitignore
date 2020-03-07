@@ -4,8 +4,4 @@
 /node_modules
 
 # dev config
-<<<<<<< HEAD
-config/config.env
-=======
 /config/config.env
->>>>>>> 7ac0f9934acf8ee8a48ecc4f9fb63f3bee1bdc62

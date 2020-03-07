@@ -20,10 +20,10 @@ const app = express();
 
 // CORS Middleware - To allow requests from any origin
 // Set up a whitelist and check against it:
-const whitelist = ["https://money-manager-app.now.sh"];
+const whitelist = ["https://money-manager-backend.herokuapp.com/","https://money-manager-app.now.sh"];
 var corsOptions = {
   origin: function(origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
